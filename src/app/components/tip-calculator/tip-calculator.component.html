@@ -1,0 +1,49 @@
+<header class="page-header">
+  <h1>Tip Calculator</h1>
+</header>
+<section>
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
+    </div>
+    <input type="number"
+           #amountInput
+           (keyup)="updateAmount(amountInput.valueAsNumber)"
+           min="0"
+           step="0.01">
+  </div>
+
+
+  <div class="btn-group top-buffer">
+    <button (click)="setTipPercent(.10)"
+            [disabled]="tipPercent === .10"
+            class="btn btn-secondary tipBtn"
+            value="10">10%</button>
+    <button (click)="setTipPercent(.15)"
+            [disabled]="tipPercent === .15"
+            class="btn btn-secondary tipBtn"
+            value="15">15%</button>
+    <button (click)="setTipPercent(.20)"
+            [disabled]="tipPercent === .20"
+            class="btn btn-secondary tipBtn"
+            value="20">20%</button>
+  </div>
+
+  <div>You are tipping <span class="tipPercent">{{ tipPercent | percent }}</span></div>
+  <div>
+    <ul class="
+            list-group
+            top-buffer">
+      <li class="list-group-item">Bill Amount:
+        <span id="billAmount">{{ amount | currency }}</span></li>
+      <li class="list-group-item">Tip Percentage:
+        <span class="tipPercent">{{ tipPercent | percent }}</span></li>
+      <li class="list-group-item">Amount of tip:
+        <span id="currentTipAmount">{{ amount * tipPercent | currency }}</span>
+      </li>
+      <li class="list-group-item">Total to be Paid: <span
+              id="total">{{ amount + (amount * tipPercent) | currency }}</span></li>
+    </ul>
+  </div>
+</section>
